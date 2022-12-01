@@ -9,11 +9,12 @@ This python library gathers all the cryptographic attacks that I present on my w
 Most of the scripts are taken from my articles , so it is advisable to read them to better understand how they work
 
 ## Installation:
+```bash
 git clone https://github.com/Vozec/Cryptolib.git  
 cd Cryptolib  
 nano first_test.py  
 ... enjoy !  
-
+```
 ## Documentation:
 
 - Create a RSA-Object with secure parameters
