@@ -91,7 +91,7 @@ nano first_test.py
 
 - ``Common Prime Factorization``
   ```python
-  sys.wiener(n_2)
+  sys.common_prime(n_2)
   ```
 
 - ``Small m``
