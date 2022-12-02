@@ -5,22 +5,26 @@
 #  Cryptolib
 
 ## Description:
-This python library gathers all the cryptographic attacks that I present on my website [vozec.fr](https://vozec.fr/crypto-rsa/)  
-Most of the scripts are taken from my articles , so it is advisable to read them to better understand how they work
+
+This python library gathers all the cryptographic attacks that I present on my website [vozec.fr](https://vozec.fr/crypto-rsa/)
+Most of the scripts are taken from my articles, so it is advisable to read them to better understand how they work!
 
 ## Installation:
+
 ```bash
-git clone https://github.com/Vozec/Cryptolib.git  
-cd Cryptolib  
-nano first_test.py  
-... enjoy !  
+git clone https://github.com/Vozec/Cryptolib.git
+cd Cryptolib
+nano first_test.py
+... enjoy !
 ```
+
 ## Documentation:
 
 - Create a RSA-Object with secure parameters
   ```python
   sys = rsa_init()
   ```
+
 - Create a RSA-Object with custom parameters
   ```python
   sys = rsa_init(
@@ -28,29 +32,31 @@ nano first_test.py
     n=...
   )
   ```
-- Show info on know variables 
+
+- Show info on known variables
   ```python
   sys.info()
   ```
+
   *output*:
   ```bash
   --- Status ---
-    E: know
-    P: unknow
-    Q: unknow
-    N: know
-    D: unknow
-  PHI: unknow
+    E: known
+    P: unknown
+    Q: unknown
+    N: known
+    D: unknown
+  PHI: unknown
   --------------
   ```
 
-- Encrypt Message:  
+- Encrypt Message:
   *(e,n) have to be set*
   ```python
   c = sys.encrypt(b'Hello Vozec')
   ```
 
-- Decrypt Message:  
+- Decrypt Message:
   *(e,n,d) have to be set*
   ```python
   m = sys.decrypt(c)
@@ -61,7 +67,7 @@ nano first_test.py
   sys.pop('p')
   ```
 
-- Get Publique Key (.pub)
+- Get Public Key (.pub)
   ```python
   sys.public_key()
   ```
@@ -72,29 +78,27 @@ nano first_test.py
   ```
 
 ## Attacks
-
-
-- ``FactorDb Factorization``
+- `FactorDb Factorization`
   ```python
   sys.factordb()
   ```
 
-- ``Fermat Factorization``
+- `Fermat Factorization`
   ```python
   sys.fermat()
   ```
 
-- ``Wiener Factorization``
+- `Wiener Factorization`
   ```python
   sys.wiener()
   ```
 
-- ``Common Prime Factorization``
+- `Common Prime Factorization`
   ```python
   sys.common_prime(n_2)
   ```
 
-- ``Small m``
+- `Small m`
   ```python
   m = sys.small_m(c)
   ```
