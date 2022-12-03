@@ -18,6 +18,11 @@ nano first_test.py
 ... enjoy !
 ```
 
+## Examples / test
+You can retrieve test for all attacks in the **examples** folder.  
+The file ``test.py`` runs all tests in this folder.
+
+
 ## Documentation:
 
 - Create a RSA-Object with secure parameters
@@ -67,6 +72,11 @@ nano first_test.py
   sys.pop('p')
   ```
 
+- Add a value:
+  ```python
+  sys.add('n',7617...7187)
+  ```
+
 - Get Public Key (.pub)
   ```python
   sys.public_key()
@@ -95,10 +105,20 @@ nano first_test.py
 
 - `Common Prime Factorization`
   ```python
-  sys.common_prime(n_2)
+  sys.common_prime()
   ```
 
-- `Small m`
+- `Small m decoder`
   ```python
-  m = sys.small_m(c)
+  m = sys.small_m()
+  ```
+
+- `Common Modulus decoder`
+  ```python
+  m = sys.common_modulus()
+  ```
+
+- `Hastad Broadcast attack`
+  ```python
+  m = sys.hastad()
   ```
