@@ -1,24 +1,18 @@
-from Cryptolib.RSA.system import *
+from glob import glob
 
-sys = rsa_init(
-		e=65537,
-		n=546480898644192854289613211318283372083827462595494488488703390642299583863737949445782560754114114083715341900177523352513320308835896569559795948842696151215075935167387324762001504175864881745474931498272994380590436716963454423950174614869590249698373859676626313904736490404029457882552069971909822348178035620519,
-	)
+from Cryptolib.logger import logger
 
-c = 356544784196584168486848809631214402999271457594036409225865336927842770965108395874991584214975905470243759082583516722808818333867598545197017617751563262506201112454199995764015883103618755317994594838938203267072167771166032367140708237995404362996994696279597243576414139284613611850253850877800329534642461422087
+def load(path="examples"):
+	modules = {}
+	for module_name in sorted(glob('%s/*.py'%path)):
+		name = module_name.replace('/','.')[:-3]
+		modules[name.split('.')[-1]]= getattr(__import__(name),name.split('.')[-1])
+	return modules
 
-# Show Info before attack
-sys.info()
+logger('	Module   | Test Succeed','info',0,0,True)
+logger('_________________________________\n','info',0,0,True)
 
-# Attack
-sys.factordb()
-
-# Show Info after attack
-sys.info()
-
-# Check if system is valid
-if sys.full():
-	# Decrypt message
-	print(sys.decrypt(c))
-
-# values from zh3r0-ctf
+for name,obj in load('examples').items():
+	res = obj.test()
+	color = 'flag' if res else 'error'
+	logger('%15s | %5s'%(name,res),color,0,0,True)
