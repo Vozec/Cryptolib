@@ -9,10 +9,10 @@ def load(path="examples"):
 		modules[name.split('.')[-1]]= getattr(__import__(name),name.split('.')[-1])
 	return modules
 
-logger('	Module   | Test Succeed','info',0,0,True)
-logger('_________________________________\n','info',0,0,True)
+logger('	 Module   | Test Succeed','info',0,0,True)
+logger('____________________________________\n','info',0,0,True)
 
 for name,obj in load('examples').items():
 	res = obj.test()
 	color = 'flag' if res else 'error'
-	logger('%15s | %5s'%(name,res),color,0,0,True)
+	logger('%16s | %5s'%(name,res),color,0,0,True)
