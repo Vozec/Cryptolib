@@ -91,21 +91,25 @@ The file ``test.py`` runs all tests in this folder.
 - `FactorDb Factorization`
   ```python
   sys.factordb()
+  m = sys.decrypt(c)
   ```
 
 - `Fermat Factorization`
   ```python
   sys.fermat()
+  m = sys.decrypt(c)
   ```
 
 - `Wiener Factorization`
   ```python
   sys.wiener()
+  m = sys.decrypt(c)
   ```
 
 - `Common Prime Factorization`
   ```python
   sys.common_prime()
+  m = sys.decrypt(c)
   ```
 
 - `Small m decoder`
@@ -121,4 +125,19 @@ The file ``test.py`` runs all tests in this folder.
 - `Hastad Broadcast attack`
   ```python
   m = sys.hastad()
+  ```
+
+- `MultiPrimes decoder`
+  ```python
+  primes = [..,..,..]
+  sys.multi_primes()
+  m = sys.decrypt(c)
+  ```
+
+- `Franklin Reiter attack`
+  ```python
+  sys.add('c',c1)
+	sys.add('c',c2)
+	m2 = sys.franklin_reiter(a=a,b=b)
+  #m2 = a*m1+b
   ```
