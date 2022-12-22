@@ -1,4 +1,4 @@
-from Crypto.Util.number import long_to_bytes,bytes_to_long,GCD
+from Crypto.Util.number import long_to_bytes,bytes_to_long,GCD,inverse
 from Crypto.PublicKey import RSA
 
 from Cryptolib.RSA.utils import primes
@@ -85,8 +85,7 @@ class rsa_system():
 		if (self.p and self.n and not self.phi):
 			self.phi = (self.p-1)*(self.q-1)
 		if (self.e and self.phi and not self.d):
-			self.d = pow(self.e[0],-1,self.phi)
-
+			self.d = inverse(self.e[0],self.phi)
 	################################
 
 	## OTHER #######################
@@ -141,7 +140,7 @@ class rsa_system():
 		m = common_modulus(self.e[0],self.e[1], self.n[0], self.c[0], self.c[1])
 		return long_to_bytes(m)
 
-	def small_m(self,c,e=None):
+	def small_m(self,c:int,e=None):
 		e = e if e is not None else self.e[0]
 		assert self.n[0] and self.e[0], '(n,e) incomplete'
 		from gmpy2 import iroot,get_context
@@ -163,7 +162,7 @@ class rsa_system():
 		m = hastad_broadcast(self.n,self.c,self.e[0])
 		return m
 
-	def franklin_reiter(self,a,b):
+	def franklin_reiter(self,a:int,b:int):
 		assert self.e and self.n and self.c, '(n,e,c) incomplete'
 		assert len(self.c),'[c] has to have 2 elements'
 		assert self.e[0].bit_length() < 32, 'e is to much big'
@@ -179,6 +178,12 @@ class rsa_system():
 		phi,d = multi_primes(self.n[0],self.e[0],primes)
 		self.update(phi=phi,d=d)
 		return True
+
+	def fault_signature(self,s:int,m:int):
+		assert self.e and self.n, '(n,e) incomplete'
+		p = GCD(s**self.e[0] - m,self.n[0])
+		self.update(p=p)
+		return self.p,self.q
 
 	################################
 
